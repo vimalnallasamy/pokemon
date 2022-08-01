@@ -1,0 +1,32 @@
+@import '../../theme/variables.scss';
+
+.search-wrapper {
+  display: flex;
+
+  .search-input {
+    flex-grow: 1;
+    @include font-size($fontSizeXl);
+  }
+
+  .search-btn {
+    display: flex;
+    align-items: center;
+    padding: $paddingSm/2 $paddingSm;
+    margin-left: $marginSm;
+    @include font-size($fontSizeXl);
+    border: none;
+    background-color: $primaryColor;
+    color: $primaryColorContrast;
+    cursor: pointer;
+
+    .search-btn-text {
+      margin-left: $marginSm;
+    }
+
+    &.disabled {
+      opacity: .5;
+      pointer-events: none;
+    }
+  }
+
+}

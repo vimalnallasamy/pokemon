@@ -1,0 +1,42 @@
+//  Primary colors
+$primaryColor: #3e5ea8;
+$primaryColorContrast: #fff;
+$errorColor: #bb1313;
+
+//  Font colors
+$fontSizeSm : 12;
+$fontSizeMd : 14;
+$fontSizeLg : 16;
+$fontSizeXl : 18;
+$fontSizeXxl : 20;
+$fontSizeXxxl : 24;
+
+//  Margins colors
+$marginSm : .75rem;
+$marginMd : 1rem;
+$marginLg : 1.5rem;
+
+//  Padding colors
+$paddingSm : .75rem;
+$paddingMd : 1rem;
+$paddingLg : 1.5rem;
+
+$bp-phone: 420px;
+$bp-tablet: 768px;
+
+//  Required mixins
+@mixin font-size($value) {
+  font-size: ($value / 16) + rem;
+}
+
+@mixin for-phone-only {
+  @media (max-width: $bp-phone) {
+      @content;
+  }
+}
+
+@mixin for-tablet-down {
+  @media (max-width: $bp-tablet) {
+      @content;
+  }
+}
