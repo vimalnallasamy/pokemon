@@ -6,21 +6,25 @@
   .search-input {
     flex-grow: 1;
     @include font-size($fontSizeXl);
+    > div {
+      border-radius: 15px;
+    }
   }
 
   .search-btn {
     display: flex;
     align-items: center;
-    padding: $paddingSm/2 $paddingSm;
+    padding: $paddingSm/2 $paddingSm*2;
     margin-left: $marginSm;
     @include font-size($fontSizeXl);
     border: none;
     background-color: $primaryColor;
     color: $primaryColorContrast;
+    border-radius: 15px;
     cursor: pointer;
 
     .search-btn-text {
-      margin-left: $marginSm;
+      margin-right: $marginSm/2;
     }
 
     &.disabled {

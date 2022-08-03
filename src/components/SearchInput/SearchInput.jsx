@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
 // In app imports
 import "./SearchInput.scss";
 
 function SearchInput({ options, onSearch, placeholder, searchBtnText }) {
-
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -21,14 +20,14 @@ function SearchInput({ options, onSearch, placeholder, searchBtnText }) {
         onSubmit={onSearch}
       />
       <button
-        className={`search-btn  ${searchText ? '' : 'disabled'}`}
+        className={`search-btn  ${searchText ? "" : "disabled"}`}
         onClick={() => {
           onSearch(searchText);
           setSearchText("");
         }}
       >
-        <BiSearchAlt2 />
         <span className={`search-btn-text`}>{searchBtnText}</span>
+        <IoMdArrowRoundForward />
       </button>
     </div>
   );
@@ -38,7 +37,7 @@ SearchInput.propTypes = {
   options: PropTypes.array,
   onSearch: PropTypes.func,
   placeholder: PropTypes.string,
-  searchBtnText: PropTypes.string
+  searchBtnText: PropTypes.string,
 };
 
 export default SearchInput;

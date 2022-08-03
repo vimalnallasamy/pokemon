@@ -30,6 +30,10 @@ function PokemonSearch() {
           event.value
         );
         setSelectedPokemon([pokemonDetailsResp, ...selectedPokemon]);
+        PokemonService.setDataToStorage([
+          pokemonDetailsResp,
+          ...selectedPokemon,
+        ]);
       } else {
         setErrorMsg(AppConstants.Errors.pokemonExistError);
       }
@@ -46,10 +50,15 @@ function PokemonSearch() {
       (pokemon) => pokemon.id !== id
     );
     setSelectedPokemon(updatedPokemons);
+    PokemonService.setDataToStorage(updatedPokemons);
   };
 
   useEffect(() => {
     const fetchPokemonData = async () => {
+      const pokemonDataFromStorage = await PokemonService.getDataFromStorage();
+      if (pokemonDataFromStorage) {
+        setSelectedPokemon(pokemonDataFromStorage);
+      }
       let pokemonData = await PokemonService.getPokemonList();
       pokemonData = pokemonData.map((pokemon) => {
         return { value: pokemon.name, label: pokemon.name };
@@ -65,16 +74,21 @@ function PokemonSearch() {
       <section className="pokemon-search-container">
         <img
           className="pokemon-img"
-          src={process.env.PUBLIC_URL + "/assets/PokemonLogo.svg"}
+          src={process.env.PUBLIC_URL + "/assets/pokeball.svg"}
           alt=""
         />
-        <SearchInput
-          options={pokemonData}
-          onSearch={fetchPokemonByName}
-          placeholder={AppConstants.PokemonSearch.label}
-          searchBtnText={AppConstants.PokemonSearch.searchBtn}
-        />
-        {errorMsg && <div className="error-msg">{`* ${errorMsg}`}</div>}
+        <div className="header-text">{AppConstants.PokemonSearch.headerText}</div>
+        <div className="search-input-wrapper">
+          <div className="search-item-wrapper">
+            <SearchInput
+              options={pokemonData}
+              onSearch={fetchPokemonByName}
+              placeholder={AppConstants.PokemonSearch.label}
+              searchBtnText={AppConstants.PokemonSearch.searchBtn}
+            />
+            {errorMsg && <div className="error-msg">{`* ${errorMsg}`}</div>}
+          </div>
+        </div>
       </section>
       {/* END :: Search Container */}
 
@@ -83,12 +97,14 @@ function PokemonSearch() {
         {selectedPokemon &&
           selectedPokemon.map((pokemon) => {
             return (
-              <div key={pokemon.id} className="pokemon-item">
-                <PokemonCard
-                  {...pokemon}
-                  onClose={onCloseHandler}
-                ></PokemonCard>
-              </div>
+              pokemon && (
+                <div key={pokemon.id} className="pokemon-item">
+                  <PokemonCard
+                    {...pokemon}
+                    onClose={onCloseHandler}
+                  ></PokemonCard>
+                </div>
+              )
             );
           })}
       </section>

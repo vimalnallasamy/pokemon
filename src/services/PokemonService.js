@@ -72,4 +72,21 @@ export class PokemonService {
     }
     return pokemonDetail;
   }
+
+  /**
+   * Function to set the pokemon data to storage
+   * @param pokemonData - pokemon data
+   */
+  static async setDataToStorage(pokemonData) {
+    if(pokemonData) {
+      window.localStorage.setItem("pokemonData", JSON.stringify(pokemonData));
+    }
+  }
+
+  /**
+   * Function to set the pokemon data to storage
+   */
+  static async getDataFromStorage() {
+    return JSON.parse(window.localStorage.getItem("pokemonData"));
+  }
 }

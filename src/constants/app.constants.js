@@ -5,8 +5,9 @@ module.exports = Object.freeze({
     moves: 'Moves'
   },
   PokemonSearch: {
-    label: 'select your pokemon',
-    searchBtn: 'search'
+    label: 'E.g. Pikachu',
+    searchBtn: 'Go',
+    headerText: 'Who are you Looking for ?'
   },
   Errors: {
     pokemonExistError: 'The selected Pokemon is already exist'

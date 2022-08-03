@@ -1,18 +1,59 @@
 @import '../../theme/variables.scss';
 
 .app {
-  width: 80%;
-  margin: 5vh auto;
-
+  background-color: $backgroundColor;
+  min-height: 100vh;
   // START :: search container
   .pokemon-search-container {
 
+    background-color: $headerColor;
+    padding: 5vh 10% 0 10%;
+    position: relative;
+
     .pokemon-img {
+      position: absolute;
+      top: -15%;
+      right: 2%;
+      width: 200px;
       display: block;
       margin: 0 auto;
       margin-bottom: $marginLg;
+      @include for-tablet-down {
+        width: 160px;
+      }
+      @include for-phone-only {
+        width: 120px;
+
+      }
     }
 
+    .header-text {
+      @include font-size(3*$fontSizeXxxl);
+      color: $primaryColorContrast;
+      margin-bottom: 2*$marginLg;
+      font-weight: 700;
+      width: 70%;
+      @include for-tablet-down {
+        @include font-size(2*$fontSizeXxxl);
+      }
+      @include for-phone-only {
+        @include font-size(1.5*$fontSizeXxxl);
+      }
+    }
+
+    .search-input-wrapper {
+      padding-bottom: 2*$marginLg;
+      .search-item-wrapper {
+        width: 50%;
+        margin: 0 auto;
+        @include for-tablet-down {
+          width: 80%;
+        }
+        @include for-phone-only {
+          width: 100%;
+        }
+      }
+    }
     .error-msg {
       color: $errorColor;
       margin-top: $marginSm;
@@ -22,10 +63,12 @@
   // END :: search container
 
   .pokemon-display-container {
+    width: 80%;
+    padding: 5vh 10%;
     display: grid;
     grid-template-columns: repeat(auto-fill, calc((100% - 3*20px)/4));
     gap: 20px;
-    margin-top: $marginLg;
+    padding-top: $paddingLg;
     @include for-tablet-down {
       grid-template-columns: repeat(auto-fill, calc((100% - 2*20px)/3));
     }
